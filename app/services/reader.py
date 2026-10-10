@@ -42,8 +42,6 @@ def read_geo_files(path:Path) -> ReadResult:
 
     crs = gdf.crs.to_string() if gdf.crs else None
 
-    if crs is None:
-        warnings.append("No crs found in file , can't be trusted until it is known")
     return ReadResult(features=_extract_features(gdf,crs),crs=crs,warnings=warnings)
 
 def _read_kml(path: Path) -> tuple[gpd.GeoDataFrame,list[str]]:
